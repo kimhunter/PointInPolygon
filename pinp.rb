@@ -48,9 +48,13 @@ module PinP
       end
     end
 
+    def contains_point? p, method=:crossing
+      return (method == :crossing) ? contains_point_crossing?(p) : contains_point_winding?(p)
+    end
+
     # See this
     # http://softsurfer.com/Archive/algorithm_0103/algorithm_0103.htm
-    def contains_point? point
+    def contains_point_crossing? point
       count = 0;
       @edges.each_with_index do |edge,i| 
         if (edge.upward_crossing? point) || (edge.downward_crossing? point)
@@ -61,6 +65,17 @@ module PinP
       count.odd?
     end
 
+    def contains_point_winding? point
+      counter = 0
+      @edges.each do |edge|
+        if edge.upward_crossing?(point) && edge.is_left?(point) 
+          counter += 1 
+        elsif edge.downward_crossing?(point) && is_right?(point)
+            counter -= 1
+        end    
+      end
+      return counter != 0
+    end
 
     def to_s
       "Polygon #{@points.count} Edges #{@edges.count}"
@@ -108,7 +123,19 @@ module PinP
     def is_point_left_on_or_right point
       (@end_point.latitude - @start_point.latitude) * (point.longitude - @start_point.longitude)           - (point.latitude - @start_point.latitude) * (@end_point.longitude - @start_point.longitude)
     end
-
+    
+    def is_left? p
+      is_point_left_on_or_right(p) > 0
+    end
+    
+    def is_right? p
+      is_point_left_on_or_right(p) < 0      
+    end
+    
+    def is_on? p
+      is_point_left_on_or_right(p) == 0
+    end
+    
     def to_s
       "Edge #{@start_point} -> #{@end_point}"
     end

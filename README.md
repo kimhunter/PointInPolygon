@@ -4,5 +4,4 @@ Implementation in ruby of the algorithm found in [Point in Polygon Winding Numbe
 
 
 ###Todo
-* Implement Tests
-* Add Winding Number algorithm.
+* Implement more extensive tests

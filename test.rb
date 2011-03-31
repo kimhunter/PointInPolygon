@@ -52,7 +52,6 @@ class TestEdge < Test::Unit::TestCase
     assert_equal(p2, edge.end_point)
   end
   
-  
 
   def test_rise
     assert_equal 10, @v_edge.rise ,"Rise is wrong for vertical line"
