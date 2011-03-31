@@ -100,6 +100,14 @@ module PinP
     def run
       @end_point.longitude - @start_point.longitude
     end
+    
+    # tests if a point is Left On or Right of an infinite edge.
+    # Returns: >0 if point is left of edge
+    #          =0 if point is on the edge
+    #          <0 if point is right of edge
+    def is_point_left_on_or_right point
+      (@end_point.latitude - @start_point.latitude) * (point.longitude - @start_point.longitude)           - (point.latitude - @start_point.latitude) * (@end_point.longitude - @start_point.longitude)
+    end
 
     def to_s
       "Edge #{@start_point} -> #{@end_point}"
