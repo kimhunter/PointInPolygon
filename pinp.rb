@@ -29,6 +29,7 @@ module PinP
       build_edges
     end
 
+    # Load edges from all points
     def build_edges
       i = @points.count - 1
 
