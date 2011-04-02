@@ -128,15 +128,16 @@ module PinP
       (@end_point.latitude - @start_point.latitude) * (point.longitude - @start_point.longitude)           - (point.latitude - @start_point.latitude) * (@end_point.longitude - @start_point.longitude)
     end
     
-    def is_left? p
+    
+    def point_is_left? p
       is_point_left_on_or_right(p) > 0
     end
     
-    def is_right? p
+    def point_is_right? p
       is_point_left_on_or_right(p) < 0      
     end
     
-    def is_on? p
+    def point_is_on? p
       is_point_left_on_or_right(p) == 0
     end
     
