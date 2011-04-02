@@ -86,7 +86,10 @@ module PinP
 
 
   class Point
-    attr_accessor :longitude, :latitude
+    attr_reader :longitude, :latitude
+    alias :x :longitude
+    alias :y :latitude
+    
     def initialize(long, lat)
       @longitude = long
       @latitude = lat
