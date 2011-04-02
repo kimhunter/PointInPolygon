@@ -81,15 +81,32 @@ class TestPolygon < Test::Unit::TestCase
 
   def setup
     points = [Point.new(0,0),Point.new(20,0),Point.new(20,20),Point.new(0,20)]
-    @polygon = Polygon.new points
+    @square = Polygon.new points
   end
 
   def test_points
-    assert_equal 4, @polygon.points.size, "Wrong number of points"
+    assert_equal 4, @square.points.size, "Wrong number of points"
   end
 
   def test_edges
-    assert_equal 4, @polygon.edges.size, "Wrong number of edges"
+    assert_equal 4, @square.edges.size, "Wrong number of edges"
+  end
+  
+  def test_contains_crossing_method 
+    result = @square.contains_point? Point.new(5,5), :crossing
+    assert result, "Point should be in center of square"
+  end
+
+  def test_contains
+    [:crossing, :winding].each do |algorithm|
+        res = @square.contains_point? Point.new(5,5), algorithm
+        assert res, "Point should be in center of square (#{algorithm.to_s})"
+    end
+  end
+
+  def test_contains_winding_method
+    result = @square.contains_point? Point.new(5,5), :winding
+    assert result, "Point should be in center of square"
   end
 
 end
