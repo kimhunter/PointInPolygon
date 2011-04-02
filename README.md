@@ -4,4 +4,5 @@ Implementation in ruby of the algorithm found in [Point in Polygon Winding Numbe
 
 
 ###Todo
-* Implement more extensive tests
+* more testing
+* add option to test if point is on any edge of the polygon
