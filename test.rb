@@ -99,9 +99,19 @@ class TestPolygon < Test::Unit::TestCase
 
   def test_contains
     [:crossing, :winding].each do |algorithm|
-        res = @square.contains_point? Point.new(5,5), algorithm
-        assert res, "Point should be in center of square (#{algorithm.to_s})"
+      res = @square.contains_point? Point.new(5,5), algorithm
+      assert res, "Point should be in center of square (#{algorithm.to_s})"
+      res = @square.contains_point? Point.new(19.9,19.9), algorithm
+      assert res, "Point should be in top corner of square (#{algorithm.to_s})"
     end
+  end
+
+  def test_point_is_a_vertex
+    assert @square.is_a_vertex?(Point.new(0,0))
+    assert @square.is_a_vertex?(Point.new(20,20))
+    assert !@square.is_a_vertex?(Point.new(0,21))
+    assert !@square.is_a_vertex?(Point.new(-20,21))
+    assert !@square.is_a_vertex?(Point.new(20,21))
   end
 
   def test_contains_winding_method

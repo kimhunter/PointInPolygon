@@ -79,7 +79,11 @@ module PinP
     end
 
     def to_s
-      "Polygon #{@points.count} Edges #{@edges.count}"
+      "Polygon #{@points} Edges #{@edges}"
+    end
+
+    def is_a_vertex? point
+      nil != @points.index(point)
     end
 
   end
@@ -93,6 +97,14 @@ module PinP
     def initialize(long, lat)
       @longitude = long
       @latitude = lat
+    end
+    
+    def to_s
+      "(#{x},#{y})"
+    end
+    
+    def ==(p)
+      x == p.x && y == p.y
     end
 
   end
