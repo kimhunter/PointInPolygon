@@ -69,9 +69,9 @@ module PinP
     def contains_point_winding? point
       counter = 0
       @edges.each do |edge|
-        if edge.upward_crossing?(point) && edge.is_left?(point) 
+        if edge.upward_crossing?(point) && edge.point_is_left?(point) 
           counter += 1 
-        elsif edge.downward_crossing?(point) && is_right?(point)
+        elsif edge.downward_crossing?(point) && edge.point_is_right?(point)
             counter -= 1
         end    
       end
