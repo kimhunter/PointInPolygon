@@ -69,4 +69,10 @@ class TestEdge < Test::Unit::TestCase
     assert_equal 10, @d_edge.rise ,"Rise is wrong for diagnal line"
   end
 
+  def test_run
+    assert_equal 0,  @v_edge.run, "Vertical line doesn't have run"
+    assert_equal 10, @h_edge.run
+    assert_equal 10, @d_edge.run
+  end
+
 end
