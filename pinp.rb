@@ -37,7 +37,7 @@ module PinP
         @edges.push Edge.new(@points[i], @points[i-1])
         i -= 1
       end
-      # add the last point on
+      # add the last edge to complete the polygon
       @edges.push Edge.new(@points.first, @points.last)
     end
 

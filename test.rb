@@ -76,3 +76,20 @@ class TestEdge < Test::Unit::TestCase
   end
 
 end
+
+class TestPolygon < Test::Unit::TestCase
+
+  def setup
+    points = [Point.new(0,0),Point.new(20,0),Point.new(20,20),Point.new(0,20)]
+    @polygon = Polygon.new points
+  end
+
+  def test_points
+    assert_equal 4, @polygon.points.size, "Wrong number of points"
+  end
+
+  def test_edges
+    assert_equal 4, @polygon.edges.size, "Wrong number of edges"
+  end
+
+end
