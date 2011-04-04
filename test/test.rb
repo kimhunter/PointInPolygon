@@ -10,22 +10,12 @@ class TestPoint < Test::Unit::TestCase
     @point2 = Point.new(43.40, 28.502)
   end
  
-  def test_longitude
-    assert_equal(153.3053, @point1.longitude)
-    assert_equal(43.40,    @point2.longitude)
-  end
-  
-  def test_latitude
-    assert_equal(-28.531, @point1.latitude)
-    assert_equal(28.502,  @point2.latitude)   
-  end
-
-  def test_longitude
+  def test_x
     assert_equal(153.3053, @point1.x)
     assert_equal(43.40,    @point2.x)
   end
-
-  def test_x_alias
+  
+  def test_y
     assert_equal(-28.531, @point1.y)
     assert_equal(28.502,  @point2.y)   
   end

@@ -59,8 +59,8 @@ module Pinp
       count = 0;
       @edges.each_with_index do |edge,i| 
         if (edge.upward_crossing? point) || (edge.downward_crossing? point)
-          vt = (point.latitude - edge.start_point.latitude) / edge.rise 
-          count += 1 if point.longitude < edge.start_point.longitude + vt * (edge.run)   
+          vt = (point.y - edge.start_point.y) / edge.rise 
+          count += 1 if point.x < edge.start_point.x + vt * (edge.run)   
         end
       end
       count.odd?
@@ -90,13 +90,12 @@ module Pinp
 
 
   class Point
-    attr_reader :longitude, :latitude
-    alias :x :longitude
-    alias :y :latitude
+    attr_reader :x, :y
+    alias :longitude :x
+    alias :latitude  :y
     
-    def initialize(long, lat)
-      @longitude = long
-      @latitude = lat
+    def initialize(x, y)
+      @x, @y = x, y
     end
     
     def to_s
@@ -117,19 +116,19 @@ module Pinp
     end
 
     def upward_crossing? point
-      @start_point.latitude <= point.latitude && @end_point.latitude > point.latitude
+      @start_point.y <= point.y && @end_point.y > point.y
     end
 
     def downward_crossing? point
-      @start_point.latitude > point.latitude && @end_point.latitude <= point.latitude
+      @start_point.y > point.y && @end_point.y <= point.y
     end
 
     def rise
-      @end_point.latitude - @start_point.latitude
+      @end_point.y - @start_point.y
     end
 
     def run
-      @end_point.longitude - @start_point.longitude
+      @end_point.x - @start_point.x
     end
     
     # tests if a point is Left On or Right of an infinite edge.
@@ -137,7 +136,7 @@ module Pinp
     #          =0 if point is on the edge
     #          <0 if point is right of edge
     def is_point_left_on_or_right point
-      (@end_point.latitude - @start_point.latitude) * (point.longitude - @start_point.longitude)           - (point.latitude - @start_point.latitude) * (@end_point.longitude - @start_point.longitude)
+      (@end_point.y - @start_point.y) * (point.x - @start_point.x)           - (point.y - @start_point.y) * (@end_point.x - @start_point.x)
     end
     
     
