@@ -136,7 +136,7 @@ module Pinp
     #          =0 if point is on the edge
     #          <0 if point is right of edge
     def is_point_left_on_or_right point
-      (@end_point.y - @start_point.y) * (point.x - @start_point.x)           - (point.y - @start_point.y) * (@end_point.x - @start_point.x)
+      (@end_point.y - @start_point.y) * (point.x - @start_point.x) - (point.y - @start_point.y) * (@end_point.x - @start_point.x)
     end
     
     
