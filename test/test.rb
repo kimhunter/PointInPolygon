@@ -1,7 +1,7 @@
 require "pinp.rb"
 require "test/unit"
- 
-include PinP
+
+include Pinp
 
 class TestPoint < Test::Unit::TestCase
   
