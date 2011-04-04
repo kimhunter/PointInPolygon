@@ -1,4 +1,4 @@
-require "pinp.rb"
+require "pinp"
 require "test/unit"
 
 include Pinp
