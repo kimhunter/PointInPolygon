@@ -5,14 +5,14 @@ Usage
 -----
     require "pinp"
     points = []
-    points << PinP::Point.new(0,0)
-    points << PinP::Point.new(20,0)
-    points << PinP::Point.new(20,20)
-    points << PinP::Point.new(0,20)
+    points << Pinp::Point.new(0,0)
+    points << Pinp::Point.new(20,0)
+    points << Pinp::Point.new(20,20)
+    points << Pinp::Point.new(0,20)
     
-    pgon = PinP::Polygon.new points
-    puts pgon.contains_point? PinP::Point.new(10, 10)
-    puts pgon.contains_point? PinP::Point.new(20.1 ,10)
+    pgon = Pinp::Polygon.new points
+    puts pgon.contains_point? Pinp::Point.new(10, 10)
+    puts pgon.contains_point? Pinp::Point.new(20.1 ,10)
 
 
 
