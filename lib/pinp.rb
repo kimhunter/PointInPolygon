@@ -42,10 +42,10 @@ module Pinp
     end
 
     #expected input is newline separated "long,lat\nlong,lat" "2.3,-23.5\n323.2,232\n"
-    def parse_points pnts
-      pnts.split("\n").each do |s|
-        tmp = s.split(',')
-        @points.push Point.new(tmp[0].to_f, tmp[1].to_f)
+    def Polygon.parse_points pnts
+      return pnts.split("\n").map do |line|
+        x, y = line.split(',')
+        Point.new(x, y)
       end
     end
 
