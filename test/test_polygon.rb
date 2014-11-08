@@ -19,8 +19,16 @@ class TestPolygon < Test::Unit::TestCase
   end
   
   def test_contains_crossing_method 
-    result = @square.contains_point? Point.new(5,5), :crossing
+    result = @square.contains_point? Point.new(10,10), :crossing
     assert result, "Point should be in center of square"
+  end
+
+  def test_contains_point_winding
+    result = @square.contains_point_winding? Point.new(10,10)
+    assert result, "Point should be in center of square"
+
+    result = @square.contains_point_winding? Point.new(21,20)
+    assert result == false, "Point should not be in square"
   end
 
   def test_contains
