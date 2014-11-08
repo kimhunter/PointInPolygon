@@ -108,5 +108,22 @@ class TestPolygon < Test::Unit::TestCase
     result = @square.contains_point? Point.new(5,5), :winding
     assert result, "Point should be in center of square"
   end
+  
+  def test_parse_points
+    points = Polygon.parse_points("0,0\n0,10\n10,10\n10,0")
+    assert_equal 4, points.size, "incorrect number of points parsed"
+  end
+  
+  def test_parse_points_trailing_newlines
+    points = Polygon.parse_points("0,0\n0,10\n10,10\n10,0\n")
+    assert_equal 4, points.size, "incorrect number of points parsed"
 
+    points = Polygon.parse_points("0,0\n0,10\n10,10\n10,0\n")
+    assert_equal 4, points.size, "incorrect number of points parsed"
+
+    points = Polygon.parse_points("0,0\n0,10\n10,10\n10,0\n\n")
+    assert_equal 4, points.size, "incorrect number of points parsed"
+  end
+  
 end
+
