@@ -33,9 +33,9 @@ class TestPolygon < Test::Unit::TestCase
 
   def test_contains
     [:crossing, :winding].each do |algorithm|
-      res = @square.contains_point? Point.new(5,5), algorithm
+      res = @square.contains_point? Point.new(5, 5), algorithm
       assert res, "Point should be in center of square (#{algorithm.to_s})"
-      res = @square.contains_point? Point.new(19.9,19.9), algorithm
+      res = @square.contains_point? Point.new(19.9, 19.9), algorithm
       assert res, "Point should be in top corner of square (#{algorithm.to_s})"
     end
   end
@@ -47,12 +47,26 @@ class TestPolygon < Test::Unit::TestCase
     assert !@square.is_a_vertex?(Point.new(-20,21))
     assert !@square.is_a_vertex?(Point.new(20,21))
   end
+    
+  def test_contains_point
+    type = :winding
+    result = @square.contains_point? Point.new(5,5), type
+    assert result, "Point should be in center of square (#{type})"
+    
+    result = @square.contains_point? Point.new(25.0,25.0), type
+    assert !result, "Point should not be in square (#{type})"
+    
+    result = @square.contains_point? Point.new(25,10), type
+    assert !result, "Point should not be in square (#{type})"
+    
+    result = @square.contains_point? Point.new(10,25), type
+    assert !result, "Point should not be in square (#{type})"
 
-  def test_contains_winding_method
-    result = @square.contains_point? Point.new(5,5), :winding
-    assert result, "Point should be in center of square"
+    result = @square.contains_point? Point.new(-10,10), type
+    assert !result, "Point should not be in square (#{type})"
+    
   end
-  
+
   def test_parse_points
     points = Polygon.parse_points("0,0\n0,10\n10,10\n10,0")
     assert_equal 4, points.size, "incorrect number of points parsed"
