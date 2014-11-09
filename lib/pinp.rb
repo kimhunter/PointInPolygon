@@ -56,13 +56,14 @@ module Pinp
     # See this
     # http://softsurfer.com/Archive/algorithm_0103/algorithm_0103.htm
     def contains_point_crossing? point
-      @edges.inject(0) { |count, edge|
+      counter = 0;
+      @edges.each { |edge|
         if (edge.upward_crossing? point) || (edge.downward_crossing? point)
           vt = (point.y - edge.start_point.y) / edge.rise 
-          count += 1 if point.x < edge.start_point.x + vt * (edge.run)
+          counter += 1 if point.x < edge.start_point.x + vt * (edge.run)
         end
-        return count
-      }.odd?
+      }
+      counter.odd?
     end
 
     def contains_point_winding? point
