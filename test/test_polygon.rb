@@ -21,6 +21,9 @@ class TestPolygon < Test::Unit::TestCase
   def test_contains_crossing_method 
     result = @square.contains_point? Point.new(10,10), :crossing
     assert result, "Point should be in center of square"
+    
+    result = @square.contains_point? Point.new(25,25), :crossing
+    assert !result, "Point should not be inside of square"
   end
 
   def test_contains_point_winding
@@ -37,6 +40,10 @@ class TestPolygon < Test::Unit::TestCase
       assert res, "Point should be in center of square (#{algorithm.to_s})"
       res = @square.contains_point? Point.new(19.9, 19.9), algorithm
       assert res, "Point should be in top corner of square (#{algorithm.to_s})"
+
+      # points not in square
+      res = @square.contains_point? Point.new(-20.0, 222.0), :winding
+      assert !res, "Point should be outside top corner of square (#{algorithm.to_s})"
     end
   end
 
